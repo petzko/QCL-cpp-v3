@@ -20,6 +20,25 @@
 
 
 
+void write2Matlab(mxArray *var, const char *varname,const char *filename){
+
+	MATFile *pmat;
+	pmat = matOpen(filename,"u");
+	if(pmat == NULL){
+		pmat = matOpen(filename, "w");
+	}
+
+
+
+	if (pmat == NULL) {
+		printf("Error creating file %s\n", filename);
+		return;
+	}
+
+	matPutVariable(pmat, varname, var);
+	matClose(pmat);
+}
+
 
 
 

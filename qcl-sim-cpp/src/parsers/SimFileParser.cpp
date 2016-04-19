@@ -64,12 +64,19 @@ std::vector<std::string>  getOptionFromFile(char* filename, std::string option){
 	std::ifstream file(filename);
 	std::string line;
 
+	if(file == NULL)
+	{
+		std::cout << "could not open file" << filename << " .Aborting \n";
+		std::string msg (filename);
+		throw std::ios_base::failure("Cannot open file! "+msg);
+	}
 
 	std::vector<std::string> result;
 	bool found  = false;
 
 	// skip through the file until the first non commented or empty line
 	if (file.is_open()){
+		std::cout << "FILE OPENED\n";
 
 		std::string DELIMITER = " =\n\t\r[]";
 
@@ -102,12 +109,12 @@ std::vector<std::string>  getOptionFromFile(char* filename, std::string option){
 
 	}
 
-	if(result.size() == 0){
-		char message [512];
-		sprintf(message,"getOptionFromFile(...). Could not find option: %s !Aborting.",option.c_str());
-		MB_OUT_ERR("getOptionFromFile(...). Could not find option: " ,__FILE__,__LINE__);
-		throw std::runtime_error("Cannot retrieve sought-after option! Naming issues?");
-	}
+//	if(result.size() == 0){
+//		char message [512];
+//		sprintf(message,"getOptionFromFile(...). Could not find option: %s !Aborting.",option.c_str());
+//		MB_OUT_ERR("getOptionFromFile(...). Could not find option: " ,__FILE__,__LINE__);
+//		throw std::runtime_error("Cannot retrieve sought-after option! Naming issues?");
+//	}
 
 	return result;
 }

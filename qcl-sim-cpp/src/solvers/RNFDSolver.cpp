@@ -7,7 +7,7 @@ MB::RNFDSolver<_Tp>::RNFDSolver(unsigned int N, double dx, bool direction, doubl
 
 	this->_N = N;
 	this->_dx = dx;
-	this->p_direction = direction;
+	this-> p_direction = direction;
 	this->_c  = velocity;
 	this->_U1 = U1;
 }
@@ -23,23 +23,21 @@ _Tp MB::RNFDSolver<_Tp>::makeStep(_Tp const * F, _Tp const* F_t, _Tp const *K, d
 
 
 	double dt_2 = ((dt*dt)/2.);
-	double dx_1 = (1./_dx);
 
 	if(p_direction){
-#pragma omp parallel
-#pragma omp for
+
+#pragma omp parallel for
 		for(int x = 1 ; x < _N; x++){
-			_Tp E_x = (U0[x]-U0[x-1])*dx_1;
-			_Tp F_x = ftr*(F[x]- F[x-1])*dx_1;
-			_U1[x] = U0[x-1] + dt_2*(ftr*F_t[x]-_c*F_x -2*_c*K[x]*E_x + K[x]*ftr*F[x]+K[x]*K[x]*U0[x])+dt*(ftr*F[x]+K[x]*U0[x]);
+			_Tp E_x = (U0[x]-U0[x-1])/_dx;
+			_Tp F_x = (F[x]- F[x-1])/_dx;
+			_U1[x] = U0[x-1] +dt*(ftr*F[x]+K[x]*U0[x]) +dt_2*(ftr*F_t[x]-_c*ftr*F_x -2*_c*K[x]*E_x + K[x]*ftr*F[x]+K[x]*K[x]*U0[x]);
 		}
 	}else{
-#pragma omp parallel
-#pragma omp for
+#pragma omp parallel for
 		for(int x = 0 ; x < _N-1; x++){
-			_Tp E_x = (U0[x+1]-U0[x])/_dx;
-			_Tp F_x = ftr*(F[x+1]- F[x])/_dx;
-			_U1[x] = U0[x+1] + dt_2*(ftr*F_t[x]+_c*ftr*F_x +2*_c*K[x]*E_x + K[x]*ftr*F[x]+K[x]*K[x]*U0[x])+dt*(ftr*F[x]+K[x]*U0[x]);
+			_Tp E_x = (U0[x+1] - U0[x])/_dx;
+			_Tp F_x = ( F[x+1] -  F[x])/_dx;
+			_U1[x] = U0[x+1] + dt*(ftr*F[x]+K[x]*U0[x])+dt_2*(ftr*F_t[x]+_c*ftr*F_x +2*_c*K[x]*E_x + K[x]*ftr*F[x]+K[x]*K[x]*U0[x]);
 		}
 	}
 	_Tp res;

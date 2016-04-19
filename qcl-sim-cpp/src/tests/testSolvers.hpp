@@ -11,9 +11,11 @@
 
 #include "../solvers/MultistepDMSolver.hpp"
 #include "../solvers/RNFDSolver.hpp"
+#include "../common/utils.hpp"
 
 
 
+void testDMsolver();
 
 
 #endif /* QCL_SIM_CPP_SRC_TESTS_TESTSOLVERS_HPP_ */

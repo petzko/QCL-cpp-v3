@@ -28,18 +28,35 @@ MB::MultistepDMSolver<_Tp>::MultistepDMSolver(unsigned int nrSteps,unsigned int 
 
 
 template<typename _Tp>
-void MB::MultistepDMSolver<_Tp>::makeStep(_Tp const * rhs, double dt){
+void MB::MultistepDMSolver<_Tp>::makeStep(_Tp const * rhs,double dt){
+
 
 	//assign rhs to first position in data array
+	//	std::cout << "Data before copy of hrs:\n";
+	//	for (int k = 0; k < _m ; k++)
+	//	{	for(int i = 0 ; i < _N; i++)
+	//		std::cout<<" " << _data[k][i];
+	//	std::cout << "\n";
+	//	}
+
+	//	std::cout << "RHS:\n";
+	//	for(int i = 0 ; i < _N; i++)
+	//		std::cout<<" " << rhs[i];
+	//	std::cout << "\nData after copy of rhs:\n";
+
 	copyData<_Tp>(rhs, _data[0],_N);
+	//
+	//	for (int k = 0; k < _m ; k++)
+	//	{	for(int i = 0 ; i < _N; i++)
+	//		std::cout<<" " << _data[k][i];
+	//	std::cout <<" --> coeff["<< k <<"] = "<< _coefs[k] << "\n";
+	//	}
 
-	//step
 	for (int k = 0; k < _m ; k++)
-#pragma omp parallel
-#pragma omp for
-		for(int i = 0 ; i < _N; i++)
+#pragma omp parallel for shared(k)
+		for(int i = 0 ; i < _N; i++){
 			_SD1[i] = _SD1[i] +(_Tp)( dt*_coefs[k])*_data[k][i];
-
+		}
 
 	_iterCtr++;
 	if(_iterCtr<=_m)
@@ -132,3 +149,4 @@ std::vector<double> MB::MultistepDMSolver<_Tp>::getCoeffs(unsigned int step,unsi
 
 template class MB::MultistepDMSolver< COMPLEXFLOAT >;
 template class MB::MultistepDMSolver< COMPLEXDOUBLE >;
+template class MB::MultistepDMSolver< double>;

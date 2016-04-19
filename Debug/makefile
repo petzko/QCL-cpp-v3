@@ -8,20 +8,14 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include qcl-sim-cpp/src/tests/subdir.mk
 -include qcl-sim-cpp/src/solvers/subdir.mk
--include qcl-sim-cpp/src/sim/subdir.mk
+-include qcl-sim-cpp/src/sim_OPTICA_NOTL/subdir.mk
+-include qcl-sim-cpp/src/sim_FS183S_NOTL/subdir.mk
 -include qcl-sim-cpp/src/parsers/subdir.mk
 -include qcl-sim-cpp/src/matrix/subdir.mk
 -include qcl-sim-cpp/src/common/subdir.mk
 -include qcl-sim-cpp/src/subdir.mk
--include qcl-sim-cpp/build/subdir.mk
--include qcl-sim-cpp/Debug/test/subdir.mk
--include qcl-sim-cpp/Debug/src/solvers/subdir.mk
--include qcl-sim-cpp/Debug/src/sim/subdir.mk
--include qcl-sim-cpp/Debug/src/parsers/subdir.mk
--include qcl-sim-cpp/Debug/src/matrix/subdir.mk
--include qcl-sim-cpp/Debug/src/common/subdir.mk
--include qcl-sim-cpp/Debug/src/subdir.mk
 -include subdir.mk
 -include objects.mk
 

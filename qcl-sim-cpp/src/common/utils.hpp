@@ -29,6 +29,7 @@
 #include <assert.h>
 
 #define CPP_CPLX
+
 #ifdef CPP_CPLX
 
 #include <complex>
@@ -55,7 +56,7 @@
 #define REAL(x) (creal(x))
 #define IMAG(x) (cimag(x))
 #define  ABS(x)  sqrt(REAL(x)*REAL(x) + IMAG(x)*IMAG(x))
-#define CONJ(x) REAL(X)-I*IMAG(X)
+#define CONJ(x) creal(x)-I*cimag(x)
 
 #endif
 
@@ -83,6 +84,10 @@ enum TYPE_ID {FLT , DBL, CPLX_FLOAT, CPLX_DOUBLE , UNDEF};
 
 #define explicit_cast(type,data){*((type*)&data)}
 
+
+#include "mat.h" // for matlab stuff
+
+void write2Matlab(mxArray *var, const char *varname,const char *filename);
 
 
 

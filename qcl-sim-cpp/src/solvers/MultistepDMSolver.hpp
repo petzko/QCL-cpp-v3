@@ -35,7 +35,7 @@ public:
 
 	MultistepDMSolver(unsigned int nrSteps,unsigned int nrPts,_Tp* SD1);
 
-	void makeStep(_Tp const * rhs, double dt);
+	void makeStep(_Tp const * rhs,  double dt);
 	_Tp* getLatestSolution();
 	_Tp* setLatestSolution(_Tp* newsol);
 

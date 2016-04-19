@@ -22,7 +22,7 @@ namespace MB{
 struct SimData{
 
 	double c,T_R,f_R,hbar;
-	size_t INJ,ULL,LLL,RES,DEPOP;
+	size_t INJ,ULL,LLL,DEPOP,POP1,POP2;
 	size_t NLVL;
 
 	double E0,l0;
@@ -62,10 +62,10 @@ struct SimData{
 
 	_TYPE_** SD0  = NULL;
 	_TYPE_** SD1  = NULL;
-	_TYPE_** SDRHS  = NULL;
+	_TYPE_** SD_t  = NULL;
 
 	//populations
-	size_t r110,r330,r220,rRES;
+	size_t r110,r330,r220;
 
 	//COHERENCES
 	size_t r130,n32p,n32m, n12p,n12m;
@@ -74,14 +74,15 @@ struct SimData{
 	size_t r11p,r33p,r22p;
 	//SHB COHERENCES
 	size_t r13p,r13m;
+	// indices of the rows in our storage mtrices where the additional population vectors are to be found!
+	size_t rPOP1, rPOP2;
+
 
 	size_t U; size_t V ;
 
-	// num of vars if SHB is on -> 16
-	// else Nvars = 11;
 
-	// num of vars if SHB  is off!
-	size_t Nvars = 11;
+	// num of vars if SHB is on -> 17/12 if  is off!
+	size_t Nvars;
 
 	//wave eqn. solvers!
 	MB::PropagationEqnSolver<_TYPE_>* U_solver  = NULL;
@@ -94,7 +95,8 @@ struct SimData{
 	MB::DMSolver<_TYPE_>* r110_solver = NULL;
 	MB::DMSolver<_TYPE_>* r330_solver = NULL;
 	MB::DMSolver<_TYPE_>* r220_solver = NULL;
-	MB::DMSolver<_TYPE_>* rRES_solver = NULL;
+	MB::DMSolver<_TYPE_>* pop1_solver = NULL;
+	MB::DMSolver<_TYPE_>* pop2_solver = NULL;
 
 	MB::DMSolver<_TYPE_>* r11p_solver = NULL;
 	MB::DMSolver<_TYPE_>* r33p_solver = NULL;
@@ -132,10 +134,10 @@ struct SimData{
 
 
 		// clear up simulation data
-		if (SDRHS != NULL){
-			if (SDRHS[0] != NULL)
-				free(SDRHS[0]);
-			free(SDRHS);
+		if (SD_t != NULL){
+			if (SD_t[0] != NULL)
+				free(SD_t[0]);
+			free(SD_t);
 		}
 
 
@@ -154,8 +156,13 @@ struct SimData{
 			delete r330_solver;
 		if(r220_solver != NULL)
 			delete r220_solver;
-		if(rRES_solver != NULL)
-			delete rRES_solver;
+
+		if(pop1_solver != NULL)
+			free(pop1_solver);
+
+		if(pop2_solver != NULL)
+			free(pop2_solver);
+
 
 		if(r11p_solver != NULL)
 			delete r11p_solver;

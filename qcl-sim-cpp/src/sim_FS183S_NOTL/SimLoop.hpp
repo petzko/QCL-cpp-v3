@@ -7,12 +7,8 @@
 //
 #ifndef SRC_SIM_SIMLOOP_HPP_
 #define SRC_SIM_SIMLOOP_HPP_
-#include "SimSettings.hpp"
 #include "SimData.hpp"
-#include "mat.h"
-
-void write2Matlab(mxArray *var, const char *varname,const char *filename);
-
+#include "SimSettings.hpp"
 
 void makeMaxwellVars(MB::SimSettings& set, MB::SimData& dat);
 void makeBlochVars(MB::SimSettings& set, MB::SimData& dat);
@@ -21,7 +17,7 @@ void stepMaxwellVars(MB::SimSettings& set, MB::SimData& dat);
 void stepBlochVars(MB::SimSettings& set, MB::SimData& dat);
 void updateSolutions(MB::SimSettings& set, MB::SimData& dat);
 
-void startSim(char* simFile,char* setFile);
+void startSim(char* simFile,char* setFile,double* deph_times,int attempt);
 
 
 #endif /* SRC_SIM_SIMLOOP_HPP_ */
