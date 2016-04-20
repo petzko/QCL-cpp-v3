@@ -51,7 +51,7 @@ all: qcl-sim-ptrArithmetic
 qcl-sim-ptrArithmetic: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/mnt/SHARED/Matlab_Linux/bin/glnxa64 -L/home/petzko/libraries/gsl-1.9/install/lib -o "qcl-sim-ptrArithmetic" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L/mnt/SHARED/Matlab_Linux/bin/glnxa64 -L/home/petzko/libraries/l_mkl_11.3.2.181/install/lib/intel64 -L/home/petzko/libraries/gsl-1.9/install/lib -o "qcl-sim-ptrArithmetic" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

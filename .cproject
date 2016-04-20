@@ -25,6 +25,7 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1754477700" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.506530001" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/mnt/SHARED/Matlab_Linux/extern/include"/>
+									<listOptionValue builtIn="false" value="/home/petzko/libraries/l_mkl_11.3.2.181/install/mkl/include"/>
 									<listOptionValue builtIn="false" value="/home/petzko/libraries/gsl-1.9/install/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/qcl-sim-cpp/src}&quot;"/>
 								</option>
@@ -36,13 +37,14 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.525254901" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.1995041926" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.900900373" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
-								<option id="gnu.c.compiler.option.dialect.std.132992116" superClass="gnu.c.compiler.option.dialect.std" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.dialect.std.132992116" name="Language standard" superClass="gnu.c.compiler.option.dialect.std" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.710119516" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.54371023" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1497729522" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.paths.989247327" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/mnt/SHARED/Matlab_Linux/bin/glnxa64"/>
+									<listOptionValue builtIn="false" value="/home/petzko/libraries/l_mkl_11.3.2.181/install/lib/intel64"/>
 									<listOptionValue builtIn="false" value="/home/petzko/libraries/gsl-1.9/install/lib"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1976382268" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">

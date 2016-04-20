@@ -70,8 +70,8 @@ void makeBlochVars(MB::SimSettings& set, MB::SimData& dat){
 			dat.SD0[dat.r22p][i] = 0.0;
 		}
 
-//		if(i %100 == 0)
-//			srand(time(NULL)+rand()*i);
+		//		if(i %100 == 0)
+		//			srand(time(NULL)+rand()*i);
 
 	}
 
@@ -157,53 +157,53 @@ void stepBlochVars(MB::SimSettings& set, MB::SimData& dat){
 	 */
 
 #pragma omp parallel for private(LM)
-		for(size_t x =0 ; x < set.N ; x++){
+	for(size_t x =0 ; x < set.N ; x++){
 
-			//r110 									1i*O13.*(r130-conj(r130)) +( W(ULL,INJ) + W(ULL,DEPOP) )*r330 + ( W(LLL,INJ)+W(LLL,DEPOP) )*r220 - G(INJ)*r110;
-			dat.SD_t[r110][x] = _i*dat.HTB[INJ][ULL]*(dat.SD0[r130][x]-std::conj(dat.SD0[r130][x]))
-									+(dat.W[ULL][INJ] + dat.W[ULL][DEPOP])*dat.SD0[r330][x]
-								 + (dat.W[LLL][INJ]	+ dat.W[LLL][DEPOP])*dat.SD0[r220][x] -dat.G[INJ]*dat.SD0[r110][x]
-								 +(dat.W[POP1][INJ] + dat.W[POP1][DEPOP])*dat.SD0[rPOP1][x]+(dat.W[POP2][INJ] + dat.W[POP2][DEPOP])*dat.SD0[rPOP2][x];
-			LM  = dat.dipR*(std::conj(dat.SD0[U][x])*dat.SD0[n32p][x] + std::conj(dat.SD0[V][x])*dat.SD0[n32m][x]);
-			//r330
-			dat.SD_t[r330][x] = _i*dat.HTB[INJ][ULL]*(std::conj(dat.SD0[r130][x]) - dat.SD0[r130][x]) +_i/2.0*(LM-std::conj(LM)) +dat.SD0[r110][x]*dat.W[INJ][ULL] + dat.SD0[r220][x]*dat.W[LLL][ULL]- dat.G[ULL]*dat.SD0[r330][x]
-								   + dat.SD0[rPOP1][x]*dat.W[POP1][ULL] + dat.SD0[rPOP2][x]*dat.W[POP2][ULL] ;
-			//r220
-			dat.SD_t[r220][x] = _i/2.0*(std::conj(LM)-LM) + dat.SD0[r110][x]*dat.W[INJ][LLL]+ dat.SD0[r330][x]*dat.W[ULL][LLL] - dat.G[LLL]*dat.SD0[r220][x]
-							+ dat.SD0[rPOP1][x]*dat.W[POP1][LLL]+ dat.SD0[rPOP2][x]*dat.W[POP2][LLL];
-			//rPOP1
-			dat.SD_t[rPOP1][x] =  dat.SD0[r110][x]*dat.W[INJ][POP1]+ dat.SD0[r330][x]*dat.W[ULL][POP1]+ dat.SD0[r220][x]*dat.W[LLL][POP1]
-					    	   + dat.SD0[rPOP2][x]*dat.W[POP2][POP1] - dat.G[POP1]*dat.SD0[rPOP1][x];
-			//rPOP1
-			dat.SD_t[rPOP2][x] =  dat.SD0[r110][x]*dat.W[INJ][POP2]+ dat.SD0[r330][x]*dat.W[ULL][POP2]+ dat.SD0[r220][x]*dat.W[LLL][POP2]
-							   + dat.SD0[rPOP1][x]*dat.W[POP1][POP2] - dat.G[POP2]*dat.SD0[rPOP2][x];
+		//r110 									1i*O13.*(r130-conj(r130)) +( W(ULL,INJ) + W(ULL,DEPOP) )*r330 + ( W(LLL,INJ)+W(LLL,DEPOP) )*r220 - G(INJ)*r110;
+		dat.SD_t[r110][x] = _i*dat.HTB[INJ][ULL]*(dat.SD0[r130][x]-std::conj(dat.SD0[r130][x]))
+											+(dat.W[ULL][INJ] + dat.W[ULL][DEPOP])*dat.SD0[r330][x]
+																								 + (dat.W[LLL][INJ]	+ dat.W[LLL][DEPOP])*dat.SD0[r220][x] -dat.G[INJ]*dat.SD0[r110][x]
+																																													+(dat.W[POP1][INJ] + dat.W[POP1][DEPOP])*dat.SD0[rPOP1][x]+(dat.W[POP2][INJ] + dat.W[POP2][DEPOP])*dat.SD0[rPOP2][x];
+		LM  = dat.dipR*(std::conj(dat.SD0[U][x])*dat.SD0[n32p][x] + std::conj(dat.SD0[V][x])*dat.SD0[n32m][x]);
+		//r330
+		dat.SD_t[r330][x] = _i*dat.HTB[INJ][ULL]*(std::conj(dat.SD0[r130][x]) - dat.SD0[r130][x]) +_i/2.0*(LM-std::conj(LM)) +dat.SD0[r110][x]*dat.W[INJ][ULL] + dat.SD0[r220][x]*dat.W[LLL][ULL]- dat.G[ULL]*dat.SD0[r330][x]
+																																																							+ dat.SD0[rPOP1][x]*dat.W[POP1][ULL] + dat.SD0[rPOP2][x]*dat.W[POP2][ULL] ;
+		//r220
+		dat.SD_t[r220][x] = _i/2.0*(std::conj(LM)-LM) + dat.SD0[r110][x]*dat.W[INJ][LLL]+ dat.SD0[r330][x]*dat.W[ULL][LLL] - dat.G[LLL]*dat.SD0[r220][x]
+																																					  + dat.SD0[rPOP1][x]*dat.W[POP1][LLL]+ dat.SD0[rPOP2][x]*dat.W[POP2][LLL];
+		//rPOP1
+		dat.SD_t[rPOP1][x] =  dat.SD0[r110][x]*dat.W[INJ][POP1]+ dat.SD0[r330][x]*dat.W[ULL][POP1]+ dat.SD0[r220][x]*dat.W[LLL][POP1]
+																																+ dat.SD0[rPOP2][x]*dat.W[POP2][POP1] - dat.G[POP1]*dat.SD0[rPOP1][x];
+		//rPOP1
+		dat.SD_t[rPOP2][x] =  dat.SD0[r110][x]*dat.W[INJ][POP2]+ dat.SD0[r330][x]*dat.W[ULL][POP2]+ dat.SD0[r220][x]*dat.W[LLL][POP2]
+																																+ dat.SD0[rPOP1][x]*dat.W[POP1][POP2] - dat.G[POP2]*dat.SD0[rPOP2][x];
 
 
-			// COHERENCES
-			// r130
-			dat.SD_t[r130][x] = dat.dE13*dat.SD0[r130][x] + _i*dat.HTB[INJ][ULL]*(dat.SD0[r110][x]-dat.SD0[r330][x]) +(_i/2.0)*dat.dipR*(std::conj(dat.SD0[U][x])*dat.SD0[n12p][x] + std::conj(dat.SD0[V][x])*dat.SD0[n12m][x]);
-			//n32+
-			dat.SD_t[n32p][x] = dat.dE32*dat.SD0[n32p][x] + _i/2.0*dat.dipR*( dat.SD0[U][x]*( dat.SD0[r330][x]-dat.SD0[r220][x] )  + dat.SD0[V][x]*(dat.SD0[r33p][x]-dat.SD0[r22p][x]))- _i*dat.HTB[INJ][ULL]*dat.SD0[n12p][x];
-			//n32-
-			dat.SD_t[n32m][x] = dat.dE32*dat.SD0[n32m][x] + _i/2.0*dat.dipR*( dat.SD0[V][x]*(dat.SD0[r330][x]-dat.SD0[r220][x]) + dat.SD0[U][x]*std::conj(dat.SD0[r33p][x]-dat.SD0[r22p][x]))- _i*dat.HTB[INJ][ULL]*dat.SD0[n12m][x];
-			//n12+
-			dat.SD_t[n12p][x] = dat.dE12*dat.SD0[n12p][x] +_i/2.0*dat.dipR*( dat.SD0[U][x]*dat.SD0[r130][x] + dat.SD0[V][x]*dat.SD0[r13p][x]) - _i*dat.HTB[INJ][ULL]*dat.SD0[n32p][x];
-			//n32-
-			dat.SD_t[n12m][x] = dat.dE12*dat.SD0[n12m][x] +_i/2.0*dat.dipR*(dat.SD0[V][x]*dat.SD0[r130][x] + dat.SD0[U][x]*dat.SD0[r13m][x]) - _i*dat.HTB[INJ][ULL]*dat.SD0[n32m][x];
+		// COHERENCES
+		// r130
+		dat.SD_t[r130][x] = dat.dE13*dat.SD0[r130][x] + _i*dat.HTB[INJ][ULL]*(dat.SD0[r110][x]-dat.SD0[r330][x]) +(_i/2.0)*dat.dipR*(std::conj(dat.SD0[U][x])*dat.SD0[n12p][x] + std::conj(dat.SD0[V][x])*dat.SD0[n12m][x]);
+		//n32+
+		dat.SD_t[n32p][x] = dat.dE32*dat.SD0[n32p][x] + _i/2.0*dat.dipR*( dat.SD0[U][x]*( dat.SD0[r330][x]-dat.SD0[r220][x] )  + dat.SD0[V][x]*(dat.SD0[r33p][x]-dat.SD0[r22p][x]))- _i*dat.HTB[INJ][ULL]*dat.SD0[n12p][x];
+		//n32-
+		dat.SD_t[n32m][x] = dat.dE32*dat.SD0[n32m][x] + _i/2.0*dat.dipR*( dat.SD0[V][x]*(dat.SD0[r330][x]-dat.SD0[r220][x]) + dat.SD0[U][x]*std::conj(dat.SD0[r33p][x]-dat.SD0[r22p][x]))- _i*dat.HTB[INJ][ULL]*dat.SD0[n12m][x];
+		//n12+
+		dat.SD_t[n12p][x] = dat.dE12*dat.SD0[n12p][x] +_i/2.0*dat.dipR*( dat.SD0[U][x]*dat.SD0[r130][x] + dat.SD0[V][x]*dat.SD0[r13p][x]) - _i*dat.HTB[INJ][ULL]*dat.SD0[n32p][x];
+		//n32-
+		dat.SD_t[n12m][x] = dat.dE12*dat.SD0[n12m][x] +_i/2.0*dat.dipR*(dat.SD0[V][x]*dat.SD0[r130][x] + dat.SD0[U][x]*dat.SD0[r13m][x]) - _i*dat.HTB[INJ][ULL]*dat.SD0[n32m][x];
 
-			if(set.shb > 0 ){
-				//r11+
-				dat.SD_t[r11p][x] = _i*dat.HTB[INJ][ULL]*(dat.SD0[r13p][x]-std::conj(dat.SD0[r13m][x])) + (dat.W[ULL][INJ]+dat.W[ULL][DEPOP])*dat.SD0[r33p][x]+ (dat.W[LLL][INJ]+dat.W[LLL][DEPOP])*dat.SD0[r22p][x] - (dat.G[INJ]+dat.diffusion)*dat.SD0[r11p][x];
-				/// r33+
-				dat.SD_t[r33p][x]  = _i*dat.HTB[INJ][ULL]*(std::conj(dat.SD0[r13m][x])-dat.SD0[r13p][x])+_i/2.0*dat.dipR*(std::conj(dat.SD0[V][x])*dat.SD0[n32p][x] - (dat.SD0[U][x]*std::conj(dat.SD0[n32m][x]))) +  dat.W[INJ][ULL]*dat.SD0[r11p][x] + dat.W[LLL][ULL]*dat.SD0[r22p][x] - (dat.G[ULL]+dat.diffusion)*dat.SD0[r33p][x];
-				// r22+
-				dat.SD_t[r22p][x]  = -_i/2.0*dat.dipR*(std::conj(dat.SD0[V][x])*dat.SD0[n32p][x] - dat.SD0[U][x]*std::conj(dat.SD0[n32m][x])) + dat.W[INJ][LLL]*dat.SD0[r11p][x] + dat.W[ULL][LLL]*dat.SD0[r33p][x] - (dat.G[LLL]+dat.diffusion)*dat.SD0[r22p][x];
-				// r13+
-				dat.SD_t[r13p][x] = (dat.dE13-dat.diffusion)*dat.SD0[r13p][x] + _i*dat.HTB[INJ][ULL]*(dat.SD0[r11p][x]-dat.SD0[r33p][x]) +_i/2.0*dat.dipR*std::conj(dat.SD0[V][x])*dat.SD0[n12p][x];
-				// r13-
-				dat.SD_t[r13m][x]  = (dat.dE13-dat.diffusion)*dat.SD0[r13m][x] + _i*dat.HTB[INJ][ULL]*std::conj(dat.SD0[r11p][x]-dat.SD0[r33p][x]) + _i/2.0*dat.dipR*std::conj(dat.SD0[U][x])*dat.SD0[n12m][x];
-			}
+		if(set.shb > 0 ){
+			//r11+
+			dat.SD_t[r11p][x] = _i*dat.HTB[INJ][ULL]*(dat.SD0[r13p][x]-std::conj(dat.SD0[r13m][x])) + (dat.W[ULL][INJ]+dat.W[ULL][DEPOP])*dat.SD0[r33p][x]+ (dat.W[LLL][INJ]+dat.W[LLL][DEPOP])*dat.SD0[r22p][x] - (dat.G[INJ]+dat.diffusion)*dat.SD0[r11p][x];
+			/// r33+
+			dat.SD_t[r33p][x]  = _i*dat.HTB[INJ][ULL]*(std::conj(dat.SD0[r13m][x])-dat.SD0[r13p][x])+_i/2.0*dat.dipR*(std::conj(dat.SD0[V][x])*dat.SD0[n32p][x] - (dat.SD0[U][x]*std::conj(dat.SD0[n32m][x]))) +  dat.W[INJ][ULL]*dat.SD0[r11p][x] + dat.W[LLL][ULL]*dat.SD0[r22p][x] - (dat.G[ULL]+dat.diffusion)*dat.SD0[r33p][x];
+			// r22+
+			dat.SD_t[r22p][x]  = -_i/2.0*dat.dipR*(std::conj(dat.SD0[V][x])*dat.SD0[n32p][x] - dat.SD0[U][x]*std::conj(dat.SD0[n32m][x])) + dat.W[INJ][LLL]*dat.SD0[r11p][x] + dat.W[ULL][LLL]*dat.SD0[r33p][x] - (dat.G[LLL]+dat.diffusion)*dat.SD0[r22p][x];
+			// r13+
+			dat.SD_t[r13p][x] = (dat.dE13-dat.diffusion)*dat.SD0[r13p][x] + _i*dat.HTB[INJ][ULL]*(dat.SD0[r11p][x]-dat.SD0[r33p][x]) +_i/2.0*dat.dipR*std::conj(dat.SD0[V][x])*dat.SD0[n12p][x];
+			// r13-
+			dat.SD_t[r13m][x]  = (dat.dE13-dat.diffusion)*dat.SD0[r13m][x] + _i*dat.HTB[INJ][ULL]*std::conj(dat.SD0[r11p][x]-dat.SD0[r33p][x]) + _i/2.0*dat.dipR*std::conj(dat.SD0[U][x])*dat.SD0[n12m][x];
 		}
+	}
 
 
 	dat.r110_solver->makeStep(dat.SD_t[r110],dat.dt);
@@ -430,7 +430,7 @@ void startSim(char* simFile,char* setFile,double* deph_times,int attempt){
 	std::cout<<"Losses: " << dat.losses << "\n";
 	MB::copyData(dat.SD0[0],dat.SD1[0],dat.Nvars*set.N);
 
-	dat.N_t = 2500000;
+	dat.N_t = 10000;
 
 	mxArray *record_U = mxCreateDoubleMatrix(1,dat.N_t,mxCOMPLEX);
 	mxArray *record_V = mxCreateDoubleMatrix(1,dat.N_t,mxCOMPLEX);
@@ -491,7 +491,7 @@ void startSim(char* simFile,char* setFile,double* deph_times,int attempt){
 		stepMaxwellVars(set,dat);
 		updateSolutions(set,dat);
 
-		if (dat.iter_ctr % 10000 == 0){
+		if (dat.iter_ctr % 1000 == 0){
 			std::cout << "Time @ iteration " << dat.iter_ctr << ": " << dat.t << "\n";
 			tme = std::clock()/numthreads;
 			dur = (tme-tms)/CLOCKS_PER_SEC;

@@ -28,9 +28,11 @@ int main() {
 	char* setFname  = "/home/petzko/workspace/qcl-sim-ptrArithmetic/qcl-sim-cpp/inputdata/FL183S.set";
 	int attempt = 1;
 	// high 1-3 dephasing, normal 1-3 dephasing, low 1.3 dephasing!
-	double dephtimes[NATTEPMTS][NATTEPMTS] = {{0.175, 1.25,1.25},{1.0, 1.25,1.25},{10.,  1.25,1.25}};
-	for (int i = 0; i < NATTEPMTS ; i++)
-		startSim(simFname,setFname,dephtimes[i],i);
+//	double dephtimes[NATTEPMTS][NATTEPMTS] = {{0.175, 1.25,1.25},{1.0, 1.25,1.25},{10.,  1.25,1.25}};
+//	for (int i = 0; i < NATTEPMTS ; i++)
+//		startSim(simFname,setFname,dephtimes[i],i);
+	double dephtimes[NATTEPMTS]= {0.4, 0.8,0.8};
+	startSim(simFname,setFname,dephtimes,11);
 
 	std::cout<<"Goodbye world\n";
 
