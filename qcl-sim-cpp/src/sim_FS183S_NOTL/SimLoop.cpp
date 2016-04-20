@@ -24,6 +24,7 @@
 // path to MATLAB LIBRARY -> do not forget to include the matlab so lib.
 // LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/MATLAB/R2016a/bin/glnxa64/
 // declaring & defining a matlab array: mxArray *e_field =  mxCreateDoubleMatrix(s.N_x, s.N_t/s.ct_plot, mxREAL);
+
 void makeMaxwellVars(MB::SimSettings&  set, MB::SimData& dat){
 
 	// init u as a gaussian !
