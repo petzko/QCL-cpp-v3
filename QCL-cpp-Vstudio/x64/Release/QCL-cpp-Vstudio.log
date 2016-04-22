@@ -1,0 +1,40 @@
+﻿Build started 4/21/2016 1:46:33 PM.
+     1>Project "D:\workspaces\PeTz\QCL-cpp-Vstudio\QCL-cpp-Vstudio\QCL-cpp-Vstudio.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2015\bin\Intel64\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\amd64" /Zi /nologo /W3 /O2 /Oi /Qipo /Qftz- /D __INTEL_COMPILER=1500 /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /EHsc /MD /GS /Gy /Qoffload-option,mic,compiler,"" /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"x64\Release\QCL-cpp-Vstudio.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /TP stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Intel\Composer XE 2015\bin\Intel64\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\amd64" /Zi /nologo /W3 /O2 /Oi /Qipo /Qftz- /D __INTEL_COMPILER=1500 /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /EHsc /MD /GS /Gy /Qoffload-option,mic,compiler,"" /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\QCL-cpp-Vstudio.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /TP "QCL-cpp-Vstudio.cpp" src\common\utils.cpp src\matrix\matrix.cpp src\parsers\SimFileParser.cpp src\sim_FL183S_NOTL\SimLoop.cpp src\sim_FL183S_NOTL\SimSettings.cpp src\solvers\MultistepDMSolver.cpp src\solvers\RNFDSolver.cpp
+         QCL-cpp-Vstudio.cpp
+     1>QCL-cpp-Vstudio.cpp(13): warning #2727: could not create precompiled header file: no #include of stdafx.h before non-preprocessor directive
+           using namespace std;
+           ^
+         
+         Warning #673: the initial sequence of preprocessing directives is not compatible with those of precompiled header file "x64\Release\QCL-cpp-Vstudio.pchi"
+         
+     1>QCL-cpp-Vstudio.cpp(14): error : name must be a namespace name
+           using namespace MB;
+                           ^
+         
+     1>QCL-cpp-Vstudio.cpp(28): error : identifier "startSim" is undefined
+           	startSim(simFname,setFname,dephtimes,11);
+           	^
+         
+     1>QCL-cpp-Vstudio.cpp(29): error : namespace "std" has no member "cout"
+           	std::cout<<"Goodbye world\n";
+           	     ^
+         
+         utils.cpp
+     1>src\common\utils.cpp(16): warning #2727: could not create precompiled header file: no #include of stdafx.h before non-preprocessor directive
+           	void write2Matlab(mxArray *var, const char *varname,const char *filename){
+           	^
+         
+         Warning #673: the initial sequence of preprocessing directives is not compatible with those of precompiled header file "x64\Release\QCL-cpp-Vstudio.pchi"
+         
+         matrix.cpp
+     1>src\matrix\matrix.cpp(114): error : could not use precompiled header file: #include of stdafx.h not found
+         
+     1>Done Building Project "D:\workspaces\PeTz\QCL-cpp-Vstudio\QCL-cpp-Vstudio\QCL-cpp-Vstudio.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.51

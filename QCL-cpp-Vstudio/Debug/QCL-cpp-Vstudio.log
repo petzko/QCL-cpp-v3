@@ -1,0 +1,18 @@
+﻿Build started 4/21/2016 1:40:28 PM.
+     1>Project "D:\workspaces\PeTz\QCL-cpp-Vstudio\QCL-cpp-Vstudio\QCL-cpp-Vstudio.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\workspaces\PeTz\QCL-cpp-Vstudio\Debug\QCL-cpp-Vstudio.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\MatlabR2015a\extern\lib\win32\microsoft mkl_intel_c_dll.lib mkl_intel_thread_dll.lib mkl_core_dll.lib libiomp5md.lib libeng.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\workspaces\PeTz\QCL-cpp-Vstudio\Debug\QCL-cpp-Vstudio.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\workspaces\PeTz\QCL-cpp-Vstudio\Debug\QCL-cpp-Vstudio.lib" /MACHINE:X86 "Debug\QCL-cpp-Vstudio.obj"
+         Debug\utils.obj
+         Debug\matrix.obj
+         Debug\SimFileParser.obj
+         Debug\SimLoop.obj
+         Debug\SimSettings.obj
+         Debug\MultistepDMSolver.obj
+         Debug\RNFDSolver.obj
+         Debug\stdafx.obj
+     1>LINK : fatal error LNK1104: cannot open file 'libeng.lib'
+     1>Done Building Project "D:\workspaces\PeTz\QCL-cpp-Vstudio\QCL-cpp-Vstudio\QCL-cpp-Vstudio.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.15

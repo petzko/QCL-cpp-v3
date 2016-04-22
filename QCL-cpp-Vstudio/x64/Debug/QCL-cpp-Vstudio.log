@@ -1,0 +1,24 @@
+﻿Build started 4/22/2016 9:02:16 AM.
+     1>Project "D:\workspaces\PeTz\QCL-cpp-Vstudio\QCL-cpp-Vstudio\QCL-cpp-Vstudio.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Intel\Composer XE 2015\bin\Intel64\icl.exe /c /Qvc11 /Qlocation,link,"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\amd64" /IC:\MatlabR2015a\extern\include /Zi /nologo /W3 /O3 /Ot /Qftz- /Qparallel /D __INTEL_COMPILER=1500 /D _UNICODE /D UNICODE /EHsc /MDd /GS /Qoffload-option,mic,compiler,"" /Zc:wchar_t /Zc:forScope /Qopenmp /Qstd=c++11 /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /TP src\sim_FL183S_NOTL\SimLoop.cpp
+         SimLoop.cpp
+         remark #11074: Inlining inhibited by limit max-size 
+         remark #11074: Inlining inhibited by limit max-total-size 
+         remark #11075: To get full report use -Qopt-report:4 -Qopt-report-phase ipo
+       Link:
+         C:\Program Files (x86)\Intel\Composer XE 2015\bin\Intel64\xilink.exe /OUT:"D:\workspaces\PeTz\QCL-cpp-Vstudio\x64\Debug\QCL-cpp-Vstudio.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Intel\Composer XE 2015\mkl\lib\intel64" /LIBPATH:C:\MatlabR2015a\extern\lib\win64\microsoft mkl_intel_ilp64.lib mkl_core.lib mkl_intel_thread.lib libmx.lib libeng.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\workspaces\PeTz\QCL-cpp-Vstudio\x64\Debug\QCL-cpp-Vstudio.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\workspaces\PeTz\QCL-cpp-Vstudio\x64\Debug\QCL-cpp-Vstudio.lib" /MACHINE:X64 "x64\Debug\QCL-cpp-Vstudio.obj"
+         x64\Debug\utils.obj
+         x64\Debug\matrix.obj
+         x64\Debug\SimFileParser.obj
+         x64\Debug\SimLoop.obj
+         x64\Debug\SimSettings.obj
+         x64\Debug\MultistepDMSolver.obj
+         x64\Debug\RNFDSolver.obj
+         x64\Debug\stdafx.obj
+         xilink: executing 'link'
+     1>Done Building Project "D:\workspaces\PeTz\QCL-cpp-Vstudio\QCL-cpp-Vstudio\QCL-cpp-Vstudio.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:09.53
